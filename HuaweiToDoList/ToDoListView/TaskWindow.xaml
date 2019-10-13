@@ -1,0 +1,24 @@
+﻿<Window x:Class="ToDoListView.TaskWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ToDoListView"
+        mc:Ignorable="d"
+        Title="New Task" Height="422" Width="414">
+
+    <Grid Margin="0,0,14,12">
+        <Label Content="Task Name" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,10,0,0" Height="25" Width="165"/>
+        <Label Content="Description" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.263,1.885" Margin="23,62,0,0" Width="165"/>
+        <Label Content="Deadline" HorizontalAlignment="Left" Margin="23,142,0,0" VerticalAlignment="Top" Width="165"/>
+        <TextBox x:Name="taskNameTxt" HorizontalAlignment="Left" Height="23" Margin="193,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="179"/>
+        <TextBox x:Name="taskDescriptionTxt" HorizontalAlignment="Left" Margin="193,62,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="179" Height="57"/>
+        <Calendar x:Name="taskDeadline" HorizontalAlignment="Left" Margin="193,142,0,0" VerticalAlignment="Top" Width="179"/>
+        <Button x:Name="newTaskBtn" Content="Add Task" HorizontalAlignment="Left" Margin="297,315,0,0" VerticalAlignment="Top" Width="75" Click="newTaskBtn_Click"/>
+
+        <StatusBar HorizontalAlignment="Stretch" Height="39" Margin="10,350,10,0" VerticalAlignment="Bottom">
+            <StatusBarItem x:Name="TransactionStatusBarText" Width="372" ></StatusBarItem>
+        </StatusBar>
+
+    </Grid>
+</Window>

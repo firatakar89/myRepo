@@ -1,0 +1,20 @@
+﻿<Window x:Class="ToDoListView.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ToDoListView"
+        mc:Ignorable="d"
+        Title="Login" Height="650" Width="400">
+    <Grid>
+        <StackPanel HorizontalAlignment="Left" Height="293" Margin="32,62,0,0" VerticalAlignment="Top" Width="330">
+            <TextBox Name="usernameTxt" Margin="20" Height="41"/>
+            <PasswordBox Name="passwordTxt" Margin="20" Height="36" MaxLength="4" />
+            <Button Name="LoginBtn" Content="Login" Margin="20" Click="LoginBtn_Click"/>
+            <Button Name="RegisterBtn" Content ="Register" Margin="20" Click="RegisterBtn_Click"/>
+        </StackPanel>
+        <StatusBar x:Name="statusBar" HorizontalAlignment="Left" Height="24" Margin="10,585,0,0" VerticalAlignment="Top" Width="372">
+            <StatusBarItem x:Name="loginStatus" ></StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Window>

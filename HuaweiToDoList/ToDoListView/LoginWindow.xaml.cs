@@ -27,9 +27,7 @@ namespace ToDoListView
         private void RegisterBtn_Click(object sender, RoutedEventArgs e)
         {
             User new_user = new User(usernameTxt.Text, passwordTxt.Password);
-            try
-            {
-
+          
                 if (userController.Register(new_user))
                 {
                     login(userController.Login(new_user));
@@ -39,11 +37,7 @@ namespace ToDoListView
                     loginStatus.Content = "Kayıt işlemi başarısız";
 
                 }
-            }
-            catch 
-            {
-                loginStatus.Content = "Kayıt işlemi başarısız";
-            }
+           
 
         }
 

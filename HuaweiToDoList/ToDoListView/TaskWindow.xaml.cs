@@ -23,8 +23,7 @@ namespace ToDoListView
     
         private void newTaskBtn_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
+          
                 Task task = new Task();
                 task.name = taskNameTxt.Text;
                 task.isExpired = false;
@@ -43,10 +42,7 @@ namespace ToDoListView
                 task.isCompleted = false;
                 taskController.Add(task);
                 this.Close();
-            }
-            catch(Exception ex) {
-                TransactionStatusBarText.Content = "İşlem Başarısız";
-            }
+        
 
         }
     }

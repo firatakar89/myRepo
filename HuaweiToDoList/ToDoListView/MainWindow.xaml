@@ -15,6 +15,12 @@
                 <Button Content="Mark As Complete" Click="MarkAsComplete_Click"></Button>
                 <Button Content="Remove To Do Item" Click="RemoveToDoItem_Click"></Button>
             </ToolBar>
+            <ToolBar HorizontalAlignment="Stretch">
+                <CheckBox x:Name="showExpired" Content="Expired"/>
+                <CheckBox x:Name="showCompleted" Content="Completed"/>
+                <TextBox x:Name="searchBox"  Width="100"/>
+                <Button x:Name="filterButton"  Content="Filter" Click="filterButton_Click"/>
+            </ToolBar>
         </ToolBarTray>
         <StackPanel   HorizontalAlignment="Left" VerticalAlignment="Bottom"  Margin="10,0,0,0"  Width="204" Height="376">
             <ListView x:Name="myListsListView" VerticalAlignment="Stretch" Height="258" SelectionChanged="myListsListView_SelectionChanged"/>

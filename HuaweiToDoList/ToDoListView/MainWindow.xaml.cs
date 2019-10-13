@@ -51,8 +51,7 @@ namespace ToDoListView
 
         private void newListBtn_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
+           
                 if (!string.IsNullOrEmpty(newListTxt.Text))
                 {
                     
@@ -64,11 +63,7 @@ namespace ToDoListView
                     TransactionStatusBarText.Content = "Liste Adı boş bırakılamaz";
 
                 }
-            }
-            catch (Exception Ex)
-            {
-                TransactionStatusBarText.Content = "İşlem Başarısız";
-            }
+          
            
 
         }
@@ -118,6 +113,14 @@ namespace ToDoListView
                 taskController.Remove(selectedTask);
                 tasksOfList.ItemsSource = toDoListController.ListTasksofToDoList(selectedTask.list);
             }
+        }
+
+        private void filterButton_Click(object sender, RoutedEventArgs e)
+        {
+            bool isExpired = (bool)showExpired.IsChecked;
+            bool isCompleted = (bool)showCompleted.IsChecked;
+            string search_name = searchBox.Text;
+            tasksOfList.ItemsSource = taskController.filter(selectedList,isExpired, isCompleted, search_name);
         }
     }
 }

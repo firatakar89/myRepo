@@ -44,8 +44,7 @@ namespace Controller.Controllers
 
         public List<Task> ListTasksofToDoList(ToDoList list)
         {
-            try
-            {
+          
 
                 string query = "Select * from dbo.ToDoLists where name = @name and user_id=@user_id";
 
@@ -60,11 +59,7 @@ namespace Controller.Controllers
                     return new List<Task>();
                 }
                 return selectedList.tasks;
-            }
-            catch (Exception ex)
-            {
-                return new List<Task>();
-            }
+
         }
 
 

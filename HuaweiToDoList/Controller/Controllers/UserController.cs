@@ -12,8 +12,7 @@ namespace Controller.Controllers
         /// <param name="user">User Object</param>
         public bool Register(User user)
         {
-            try
-            {
+           
                 user.password = Encrypt(user.password);
                 if (DbContext.users.Where(p => p.username == user.username).Count() == 0)
                 {
@@ -25,11 +24,7 @@ namespace Controller.Controllers
                 {
                     return false;
                 }
-            }
-            catch 
-            {
-                return false;
-            }
+          
            
         }
         /// <summary>

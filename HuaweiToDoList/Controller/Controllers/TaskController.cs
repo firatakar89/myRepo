@@ -29,8 +29,7 @@ namespace Controller.Controllers
         {
             try
             {
-                Task _task = DbContext.tasks.FirstOrDefault(t => t == task);
-                _task.isCompleted = true;
+                task.isCompleted = true;
                 DbContext.SaveChanges();
                 return true;
             }

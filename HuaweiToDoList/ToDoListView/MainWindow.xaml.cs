@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Task = Data.Model.Task;
 
 namespace ToDoListView
 {
@@ -24,12 +25,14 @@ namespace ToDoListView
         //Logged in user
         User user;
         ToDoListController toDoListController;
+        TaskController taskController;
         ToDoList selectedList;
         public MainWindow(User user)
         {
             this.user = user;
             InitializeComponent();
             toDoListController = new ToDoListController();
+            taskController = new TaskController();
             UserNameStatusBarText.Content = this.user.username;
             InitializeLeftMenu();
 
@@ -85,9 +88,36 @@ namespace ToDoListView
 
         private void removeListBtns_Click(object sender, RoutedEventArgs e)
         {
-            toDoListController.Remove(selectedList);
-            InitializeLeftMenu();
+            MessageBoxResult result = MessageBox.Show("Are you Sure ?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                toDoListController.Remove(selectedList);
+                InitializeLeftMenu();
+            }
+        }
 
+
+        private void MarkAsComplete_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Are you Sure ?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                Task selectedTask = tasksOfList.SelectedItem as Task;
+                taskController.MarkAsComplete(selectedTask);
+                tasksOfList.ItemsSource = toDoListController.ListTasksofToDoList(selectedTask.list);
+            }
+            
+        }
+
+        private void RemoveToDoItem_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Are you Sure ?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result == MessageBoxResult.Yes)
+            {
+                Task selectedTask = tasksOfList.SelectedItem as Task;
+                taskController.Remove(selectedTask);
+                tasksOfList.ItemsSource = toDoListController.ListTasksofToDoList(selectedTask.list);
+            }
         }
     }
 }

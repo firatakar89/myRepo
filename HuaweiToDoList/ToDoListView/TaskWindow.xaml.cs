@@ -30,6 +30,7 @@ namespace ToDoListView
                 task.isExpired = false;
                 task.description = taskDescriptionTxt.Text;
                 task.list = selectedToDoList;
+                task.createTime = DateTime.Now;
                 if (taskDeadline.SelectedDate !=null)
                 {
                     task.deadline = (DateTime)taskDeadline.SelectedDate;

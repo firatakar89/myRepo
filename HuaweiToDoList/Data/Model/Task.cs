@@ -14,7 +14,7 @@ namespace Data.Model
         public DateTime deadline { get; set; }
         public bool isExpired { get; set; }
         public bool isCompleted { get; set; }
-        
+        public DateTime createTime { get; set; }
         public virtual  ToDoList list { get; set; }
 
     }

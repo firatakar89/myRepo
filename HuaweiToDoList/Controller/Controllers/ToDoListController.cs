@@ -69,6 +69,14 @@ namespace Controller.Controllers
         /// <param name="toDoList"></param>
         public void Remove(ToDoList toDoList)
         {
+            
+           //Önce o listeye ait taskları sil.
+                var x = (from y in DbContext.tasks
+                         where y.list.id == toDoList.id
+                         select y);
+                DbContext.tasks.RemoveRange(x);
+                DbContext.SaveChanges();
+            
             DbContext.lists.Remove(toDoList);
             DbContext.SaveChanges();
         }

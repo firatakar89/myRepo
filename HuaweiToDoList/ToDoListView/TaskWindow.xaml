@@ -13,12 +13,9 @@
         <Label Content="Deadline" HorizontalAlignment="Left" Margin="23,142,0,0" VerticalAlignment="Top" Width="165"/>
         <TextBox x:Name="taskNameTxt" HorizontalAlignment="Left" Height="23" Margin="193,21,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="179"/>
         <TextBox x:Name="taskDescriptionTxt" HorizontalAlignment="Left" Margin="193,62,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="179" Height="57"/>
-        <Calendar x:Name="taskDeadline" HorizontalAlignment="Left" Margin="193,142,0,0" VerticalAlignment="Top" Width="179"/>
-        <Button x:Name="newTaskBtn" Content="Add Task" HorizontalAlignment="Left" Margin="297,315,0,0" VerticalAlignment="Top" Width="75" Click="newTaskBtn_Click"/>
+        <Calendar x:Name="taskDeadline" HorizontalAlignment="Left" SelectedDatesChanged="taskDeadline_SelectedDatesChanged" Margin="193,142,0,0" VerticalAlignment="Top" Width="179"/>
+        <Button x:Name="newTaskBtn" Content="Add Task" HorizontalAlignment="right" Margin="0,0,10,20"  VerticalAlignment="Bottom" Width="75" Click="newTaskBtn_Click"/>
 
-        <StatusBar HorizontalAlignment="Stretch" Height="39" Margin="10,350,10,0" VerticalAlignment="Bottom">
-            <StatusBarItem x:Name="TransactionStatusBarText" Width="372" ></StatusBarItem>
-        </StatusBar>
-
+     
     </Grid>
 </Window>

@@ -46,6 +46,7 @@ namespace ToDoListView
             {
                 myListsListView.Items.Add(myList.name);
             }
+            newListTxt.Text = "New List Name";
             
         }
 
@@ -58,6 +59,7 @@ namespace ToDoListView
                     
                     toDoListController.Add(newListTxt.Text,user);
                     InitializeLeftMenu();
+
                 }
                 else {
                     TransactionStatusBarText.Content = "Liste Adı boş bırakılamaz";
@@ -70,23 +72,36 @@ namespace ToDoListView
 
         private void myListsListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            selectedList = user.toDoLists.Where(p => p.name.Equals(myListsListView.SelectedItem.ToString())).FirstOrDefault(); 
-            tasksOfList.ItemsSource = toDoListController.ListTasksofToDoList(selectedList);
-            
+            if (myListsListView.SelectedItem != null) { 
+                selectedList = user.toDoLists.Where(p => p.name.Equals(myListsListView.SelectedItem.ToString())).FirstOrDefault(); 
+                tasksOfList.ItemsSource = toDoListController.ListTasksofToDoList(selectedList);
+            }
+
         }
 
         private void NewTaskButton_Click(object sender, RoutedEventArgs e)
         {
+            if (selectedList ==null)
+            {
+                MessageBox.Show("List is not selected", "Warning", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             TaskWindow newTaskWindow = new TaskWindow(selectedList);
             newTaskWindow.Show();
         }
 
         private void removeListBtns_Click(object sender, RoutedEventArgs e)
         {
+            if (selectedList==null)
+            {
+                MessageBox.Show("List is not selected","Warning",MessageBoxButton.OK,MessageBoxImage.Error);
+                return;
+            }
             MessageBoxResult result = MessageBox.Show("Are you Sure ?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
                 toDoListController.Remove(selectedList);
+                myListsListView.Items.Clear();
                 InitializeLeftMenu();
             }
         }
@@ -94,10 +109,17 @@ namespace ToDoListView
 
         private void MarkAsComplete_Click(object sender, RoutedEventArgs e)
         {
+            Task selectedTask = tasksOfList.SelectedItem as Task;
+
+            if (selectedTask == null)
+            {
+                MessageBox.Show("Task is not selected", "Alert", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
             MessageBoxResult result = MessageBox.Show("Are you Sure ?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
-                Task selectedTask = tasksOfList.SelectedItem as Task;
                 taskController.MarkAsComplete(selectedTask);
                 tasksOfList.ItemsSource = toDoListController.ListTasksofToDoList(selectedTask.list);
             }
@@ -106,12 +128,19 @@ namespace ToDoListView
 
         private void RemoveToDoItem_Click(object sender, RoutedEventArgs e)
         {
+            Task selectedTask = tasksOfList.SelectedItem as Task;
+
+            if (selectedTask==null)
+            {
+                MessageBox.Show("Task is not selected", "Alert", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             MessageBoxResult result = MessageBox.Show("Are you Sure ?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
-                Task selectedTask = tasksOfList.SelectedItem as Task;
+                ToDoList temp = selectedTask.list;
                 taskController.Remove(selectedTask);
-                tasksOfList.ItemsSource = toDoListController.ListTasksofToDoList(selectedTask.list);
+                tasksOfList.ItemsSource = toDoListController.ListTasksofToDoList(temp);
             }
         }
 

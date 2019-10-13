@@ -2,6 +2,8 @@
 using Data.Model;
 using System;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Input;
 using Task = Data.Model.Task;
 
 namespace ToDoListView
@@ -18,6 +20,7 @@ namespace ToDoListView
             selectedToDoList = _selectedToDoList;
             taskController = new TaskController();
             InitializeComponent();
+            newTaskBtn.Focus();
         }
 
     
@@ -41,9 +44,16 @@ namespace ToDoListView
                 
                 task.isCompleted = false;
                 taskController.Add(task);
+                ListView v = (ListView)Application.Current.MainWindow.FindName("tasksOfList");
+                v.ItemsSource = taskController.getTasksByListId(task.list.id);
                 this.Close();
         
 
+        }
+
+        private void taskDeadline_SelectedDatesChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            Mouse.Capture(null);
         }
     }
 }

@@ -34,8 +34,18 @@
         </StatusBar>
         <ListView x:Name="tasksOfList" HorizontalAlignment="Stretch" Height="265" Margin="224,43,5,0" VerticalAlignment="Top" Width="563">
 
-
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Order By">
+                        <MenuItem x:Name="orderby_name" Header="Name" Click="sort_Click"></MenuItem>
+                        <MenuItem  x:Name="orderby_cr_date" Header="Create Date" Click="sort_Click"></MenuItem>
+                        <MenuItem  x:Name="orderby_deadline" Header="Deadline" Click="sort_Click"></MenuItem>
+                        <MenuItem   x:Name="orderby_completed" Header="Completed" Click="sort_Click"></MenuItem>
+                    </MenuItem>
+                </ContextMenu>
+            </ListView.ContextMenu>
             <ListView.ItemTemplate>
+                
                 <DataTemplate>
                     <StackPanel VerticalAlignment="Stretch">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">

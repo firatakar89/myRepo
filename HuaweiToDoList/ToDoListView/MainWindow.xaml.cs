@@ -122,5 +122,28 @@ namespace ToDoListView
             string search_name = searchBox.Text;
             tasksOfList.ItemsSource = taskController.filter(selectedList,isExpired, isCompleted, search_name);
         }
+
+        private void sort_Click(object sender,RoutedEventArgs e)
+        {
+            MenuItem menuitem = sender as MenuItem;
+            List<Task> tasks = tasksOfList.ItemsSource as List<Task>;
+            switch (menuitem.Name)
+            {
+                case "orderby_name":
+                    tasksOfList.ItemsSource = tasks.OrderBy(p => p.name).ToList();
+                    break;
+                case "orderby_cr_date":
+                    tasksOfList.ItemsSource = tasks.OrderBy(p => p.createTime).ToList();
+                    break;
+                case "orderby_deadline":
+                    tasksOfList.ItemsSource = tasks.OrderBy(p => p.deadline).ToList(); 
+                    break;
+                case "orderby_completed":
+                    tasksOfList.ItemsSource = tasks.OrderByDescending(p => p.isCompleted).ToList();
+                    break;
+            }
+
+            
+        }
     }
 }
